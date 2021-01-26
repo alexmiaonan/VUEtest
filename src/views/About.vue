@@ -32,7 +32,7 @@
 			},
 			jianfa() {
 				this.num--;
-			},
+			}, 
 			jiafa() {
 				this.num++;
 			},

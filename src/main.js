@@ -5,6 +5,10 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+import HiWorld from '@/components/HiWorld.vue'
+
+Vue.component("HiWorld",HiWorld)
+
 new Vue({
   router,
   store,
