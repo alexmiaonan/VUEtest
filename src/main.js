@@ -7,10 +7,10 @@ Vue.config.productionTip = false
 
 import HiWorld from '@/components/HiWorld.vue'
 
-Vue.component("HiWorld",HiWorld)
+Vue.component("HiWorld", HiWorld)
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+	router,
+	store,
+	render: h => h(App)
 }).$mount('#app')

@@ -13,7 +13,7 @@
 			<span>{{num2}}</span>
 			<button @click="num2++">+</button>
 		</div>
-		<div >{{ normal() }}</div>
+		<div>{{ normal() }}</div>
 		<div>{{compute1}}</div>
 	</div>
 </template>
@@ -32,7 +32,7 @@
 			},
 			jianfa() {
 				this.num--;
-			}, 
+			},
 			jiafa() {
 				this.num++;
 			},
