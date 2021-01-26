@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
-	<HiWorld></HiWorld>
+	<HiWorld msg="home传来的msg" :num="20"></HiWorld>
   </div>
 </template>
 
