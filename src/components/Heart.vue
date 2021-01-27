@@ -11,19 +11,30 @@
 
 <script>
 	export default {
+		props: {
+			stateprops: {
+				require: true,
+				type: Boolean
+			}
+		},
+		created() {
+			this.state = this.stateprops;
+		},
 		data() {
 			return {
 				state: true,
-				state1:require("../assets/img/1.png"),
-				state2:require("../assets/img/2.png")
+				state1: require("../assets/img/1.png"),
+				state2: require("../assets/img/2.png")
 			}
 		},
-		methods:{
-			change(){
-				this.state=!this.state
-				this.$emit("toparents",{"state":this.state})
+		methods: {
+			change() {
+				this.state = !this.state
+				this.$emit("toparents", {
+					"state": this.state
+				})
 			},
-			
+
 		}
 	}
 </script>
@@ -31,7 +42,6 @@
 <style lang="less">
 	.Heart {
 		display: inline-block;
-
 		img {
 			vertical-align: middle;
 		}

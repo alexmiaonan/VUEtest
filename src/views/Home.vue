@@ -18,17 +18,17 @@
 			// HelloWorld,
 			Heart
 		},
-		methods:{
+		methods: {
 			// sendmsg(e){
 			// 	console.log("Hiworld传输的参数",e)
 			// }
-			statechange(e){
-				console.log("更改点赞状态！",e.state)
+			statechange(e) {
+				console.log("更改点赞状态！", e.state)
 			}
 		},
-		data(){
-			return{
-				heartstate:false,
+		data() {
+			return {
+				heartstate: false,
 			}
 		}
 	}
