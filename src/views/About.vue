@@ -19,15 +19,23 @@
 			<h1 slot="shang">about页面插槽1</h1>
 			<h2 slot="xia">about页面插槽2</h2>
 		</HiWorld>
+		<step v-if="show"></step>
+		<button @click="show=!show">切换</button>
 	</div>
 </template>
 <script>
+	import step from "../components/step.vue"
 	export default {
 		data() {
 			return {
+				
 				num: 0,
-				num2: 0
+				num2: 0,
+				show:true,
 			}
+		},
+		components: {
+			step
 		},
 		methods: {
 			normal() {
