@@ -34,7 +34,6 @@
 					"state": this.state
 				})
 			},
-
 		}
 	}
 </script>

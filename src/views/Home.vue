@@ -13,7 +13,7 @@
 	// import HelloWorld from '@/components/HelloWorld.vue'
 	import Heart from "@/components/Heart.vue"
 	export default {
-		name: 'Home',
+		// name: 'Home',
 		components: {
 			// HelloWorld,
 			Heart
@@ -23,7 +23,7 @@
 			// 	console.log("Hiworld传输的参数",e)
 			// }
 			statechange(e) {
-				console.log("更改点赞状态！", e.state)
+				console.log("更改服务器点赞状态！state:", e.state)
 			}
 		},
 		data() {
