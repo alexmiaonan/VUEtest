@@ -23,8 +23,8 @@
 		data() {
 			return {
 				state: true,
-				state1: require("../assets/img/1.png"),
-				state2: require("../assets/img/2.png")
+				state1: require("./img/1.png"),
+				state2: require("./img/2.png")
 			}
 		},
 		methods: {
@@ -41,6 +41,7 @@
 <style lang="less">
 	.Heart {
 		display: inline-block;
+
 		img {
 			vertical-align: middle;
 		}
