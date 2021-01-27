@@ -15,6 +15,7 @@
 		</div>
 		<div>{{ normal() }}</div>
 		<div>{{compute1}}</div>
+		<HiWorld msg="home传来的msg" :num="10" ><h1 slot="shang">about页面插槽1</h1><h2 slot="xia">about页面插槽2</h2></HiWorld>
 	</div>
 </template>
 <script>

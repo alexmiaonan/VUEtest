@@ -1,10 +1,15 @@
 <template>
 	<div>
-		<h1>this is hiworld</h1>
+		<!-- <h1>this is hiworld</h1>
 		<h2>msg传参为{{msg}}</h2>
-		<h2>num传参为{{num}}</h2>
+		<h2>num传参为{{num}}</h2> -->
 		<HeiWorld></HeiWorld>
+		<slot name="shang"></slot>
 		<button @click="send">向父组件发送参数</button>
+		<slot name="xia"></slot>
+		<br>
+		<br>
+		<br>
 	</div>
 </template>
 
