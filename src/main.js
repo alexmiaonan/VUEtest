@@ -15,7 +15,6 @@ import {
 } from "./data/index.js"
 console.log("obj1", obj111)
 console.log("obj2", obj2, "obj3", obj3)
-
 Vue.component("HiWorld", HiWorld)
 Vue.use(ElementUI);
 new Vue({
