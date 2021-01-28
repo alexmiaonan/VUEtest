@@ -9,7 +9,7 @@
 		<div class="books">
 			<el-row :gutter="20">
 				<el-col :span="6" v-for="b in books" :key="b.id">
-					<router-link to="/about">
+					<router-link :to="'/book/'+b.id">
 						<el-card :body-style="{ padding: '0px' }" shadow="hover" class="book">
 							<img :src="b.mainimg" class="image">
 							<div style="padding: 14px;">
