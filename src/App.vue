@@ -1,22 +1,21 @@
 <template>
 	<div id="app">
-		<!-- <div id="nav">
-		<router-link to="/">Home</router-link> |
-		<router-link to="/about">About</router-link>|
-		<router-link to="/element">Element</router-link>
-    </div> -->
 		<el-container>
 			<el-header>
-				<el-menu  class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+				<el-menu class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
 					<el-menu-item index="1">
 						<router-link :to='{name:"Home"}'>首页</router-link>
 					</el-menu-item>
 					<el-submenu index="2">
 						<template slot="title">我的</template>
-						<el-menu-item index="2-1">收藏</el-menu-item>
+						<el-menu-item index="2-1">
+							<router-link style="color: rgb(255, 255, 255);text-decoration: none;" :to="{name:'Collect'}">收藏</router-link>
+						</el-menu-item>
 					</el-submenu>
-					<el-menu-item class="login" index="3">登录</el-menu-item>
-					<el-menu-item class="regist" index="4">注册</el-menu-item>
+					<el-menu-item class="rt" index="3">
+						<router-link :to="{name:'Login'}">登录</router-link>
+					</el-menu-item>
+					<el-menu-item class="rt" index="4">注册</el-menu-item>
 				</el-menu>
 			</el-header>
 			<el-main>
@@ -31,7 +30,20 @@
 
 	</div>
 </template>
-
+<script>
+	export default {
+		data() {
+			return {
+				activeIndex2: '1'
+			}
+		},
+		methods: {
+			handleSelect(key, keyPath) {
+				console.log(key, keyPath);
+			}
+		}
+	}
+</script>
 <style lang="less">
 	#app {
 		font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -44,37 +56,20 @@
 			padding: 0;
 		}
 
+		.rt {
+			float: right;
+		}
+
 		a {
 			text-decoration: none;
 		}
 
-		.login {
-			float: right;
-		}
-
-		.regist {
-			float: right;
-
-		}
 
 		.el-footer {
 			background-color: #B3C0D1;
 			color: #333;
 			text-align: center;
 			line-height: 60px;
-		}
-	}
-
-	#nav {
-		padding: 30px;
-
-		a {
-			font-weight: bold;
-			color: #2c3e50;
-
-			&.router-link-exact-active {
-				color: #42b983;
-			}
 		}
 	}
 </style>

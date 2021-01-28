@@ -16,12 +16,28 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+	meta:{
+		auth:true
+	},
   },
   {
     path: '/element',
     name: 'Element',
     component: () => import(/* webpackChunkName: "element" */ '../views/Element.vue')
+  },
+  {
+    path: '/collect',
+    name: 'Collect',
+    component: () => import(/* webpackChunkName: "collect" */ '../views/Collect.vue'),
+	meta:{
+		auth:true
+	},
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
   },
   {
     path: '/book/:pk',
@@ -37,6 +53,23 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+import Cookies from 'js-cookie'
+router.beforeEach(function(t,f,n){
+	if(t.meta.auth){
+		let user = Cookies.get('user')
+		if(user){
+			n()
+		}
+		else{
+			n({name:"Login",query:{next:t.path}})  //  /login?next=/collect
+		}
+	}
+	else{
+		n();
+	}
+	
 })
 
 export default router
