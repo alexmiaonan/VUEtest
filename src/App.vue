@@ -12,10 +12,20 @@
 							<router-link style="color: rgb(255, 255, 255);text-decoration: none;" :to="{name:'Collect'}">收藏</router-link>
 						</el-menu-item>
 					</el-submenu>
-					<el-menu-item class="rt" index="3">
-						<router-link :to="{name:'Login'}">登录</router-link>
-					</el-menu-item>
-					<el-menu-item class="rt" index="4">注册</el-menu-item>
+					<template v-if="user">
+						<el-menu-item class="rt" index="4" @click="logout">
+							退出
+						</el-menu-item>
+						<el-menu-item class="rt" index="3">
+							{{ user }}
+						</el-menu-item>
+					</template>
+					<template v-else>
+						<el-menu-item class="rt" index="4">注册</el-menu-item>
+						<el-menu-item class="rt" index="3">
+							<router-link :to="{name:'Login'}">登录</router-link>
+						</el-menu-item>
+					</template>
 				</el-menu>
 			</el-header>
 			<el-main>
@@ -31,15 +41,32 @@
 	</div>
 </template>
 <script>
+	import Cookies from 'js-cookie'
 	export default {
 		data() {
 			return {
+				user: null,
 				activeIndex2: '1'
+			}
+		},
+		created() {
+			let user = Cookies.get('user')
+			if (user) {
+				this.user = user
 			}
 		},
 		methods: {
 			handleSelect(key, keyPath) {
 				console.log(key, keyPath);
+			},
+			logout() {
+				if (this.$route.name != "Home") {
+					this.$router.push({
+						name: "Home"
+					})
+				}
+				this.user = null
+				Cookies.remove('user')
 			}
 		}
 	}

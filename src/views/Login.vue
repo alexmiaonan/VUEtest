@@ -32,14 +32,13 @@
 				input1: '',
 				input2: ''
 			};
-
 		},
 		methods: {
 			onSubmit() {
-				console.log('登录成功');
 				Cookies.set('user', 'gao', {
 					expires: 7
 				})
+				this.$root.$children[0].user = Cookies.get("user")
 				let next = this.$route.query.next;
 				if (next) {
 					this.$router.push(next)
