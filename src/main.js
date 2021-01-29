@@ -17,6 +17,15 @@ console.log("obj1", obj111)
 console.log("obj2", obj2, "obj3", obj3)
 Vue.component("HiWorld", HiWorld)
 Vue.use(ElementUI);
+
+import Cookies from "js-cookie"
+Vue.prototype.$jsCookie = Cookies
+
+let bus = new Vue()
+Vue.prototype.$bus = bus
+
+
+
 new Vue({
 	router,
 	store,

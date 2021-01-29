@@ -20,7 +20,6 @@
 </template>
 
 <script>
-	import Cookies from 'js-cookie'
 	export default {
 		data() {
 			return {
@@ -35,10 +34,10 @@
 		},
 		methods: {
 			onSubmit() {
-				Cookies.set('user', 'gao', {
+				this.$jsCookie.set('user', 'gao', {
 					expires: 7
 				})
-				this.$root.$children[0].user = Cookies.get("user")
+				this.$bus.$emit("userlogin","gao")
 				let next = this.$route.query.next;
 				if (next) {
 					this.$router.push(next)
