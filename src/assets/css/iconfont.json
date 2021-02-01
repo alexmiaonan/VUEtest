@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "614054",
+      "name": "个人",
+      "font_class": "geren",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "11806665",
+      "name": "为你推荐",
+      "font_class": "weinituijian",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "12437143",
+      "name": "迷你营",
+      "font_class": "miniying",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "17895778",
+      "name": "猜你喜欢",
+      "font_class": "cainixihuan",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    }
+  ]
+}

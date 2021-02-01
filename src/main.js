@@ -6,7 +6,8 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 Vue.config.productionTip = false
-
+// 全局导入iconfont样式
+import "./assets/css/iconfont.css"
 import HiWorld from '@/components/HiWorld.vue'
 import obj111 from "./data"
 import {
