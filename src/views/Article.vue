@@ -1,7 +1,7 @@
 <template>
 	<div class="article">
 		<el-container>
-			<el-header>{{article.title|info}}</el-header>
+			<el-header>{{article.title}}</el-header>
 			<el-main>{{article.content}}</el-main>
 		</el-container>
 
