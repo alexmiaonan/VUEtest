@@ -17,11 +17,13 @@
 							退出
 						</el-menu-item>
 						<el-menu-item class="rt" index="3">
-							{{ user }}
+							<router-link :to="{name:'Center'}">{{ user }}</router-link>
 						</el-menu-item>
 					</template>
 					<template v-else>
-						<el-menu-item class="rt" index="4">注册</el-menu-item>
+						<el-menu-item class="rt" index="4">
+							<router-link :to="{name:'Regist'}">注册</router-link>
+						</el-menu-item>
 						<el-menu-item class="rt" index="3">
 							<router-link :to="{name:'Login'}">登录</router-link>
 						</el-menu-item>
@@ -37,7 +39,6 @@
 				</el-button>
 			</el-footer>
 		</el-container>
-
 	</div>
 </template>
 <script>
@@ -49,8 +50,8 @@
 			}
 		},
 		created() {
-			this.$bus.$on("userlogin",_u=>{
-				this.user=_u
+			this.$bus.$on("userlogin", _u => {
+				this.user = _u
 			})
 			let user = this.$jsCookie.get('user')
 			if (user) {
@@ -83,20 +84,16 @@
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
 		color: #2c3e50;
-
 		.el-header {
 			padding: 0;
+			min-width: 300px;
 		}
-
 		.rt {
 			float: right;
 		}
-
 		a {
 			text-decoration: none;
 		}
-
-
 		.el-footer {
 			background-color: #B3C0D1;
 			color: #333;

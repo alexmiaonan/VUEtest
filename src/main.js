@@ -18,8 +18,14 @@ console.log("obj2", obj2, "obj3", obj3)
 Vue.component("HiWorld", HiWorld)
 Vue.use(ElementUI);
 
+// 全局过滤
+// Vue.filter("info",function(value){
+// 	return value+ "    gcm"
+// })
+
 import Cookies from "js-cookie"
 Vue.prototype.$jsCookie = Cookies
+console.log(Vue.prototype)
 
 let bus = new Vue()
 Vue.prototype.$bus = bus

@@ -2,7 +2,7 @@
 	<div class="home">
 			<div class="books">
 				<el-row :gutter="20">
-					<el-col :span="4" v-for="b in books" :key="b.id">
+					<el-col :span="5" v-for="b in books" :key="b.id">
 						<router-link :to="'/book/'+b.id">
 							<el-card :body-style="{ padding: '0px' }" shadow="hover" class="book">
 								<img :src="b.mainimg" class="image">
@@ -43,12 +43,15 @@
 			}
 		}
 	}
+	.el-col{
+		min-width: 130px;
+	}
 	.el-header{
 		padding: 0;
 		width: 100%;
 	}
 	.el-main {
-		background-color: skyblue;
+		background-color: #E9EEF3;
 	}
 
 	.el-menu-demo {
