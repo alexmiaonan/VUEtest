@@ -16,12 +16,10 @@
 		</div>
 		<span class="iconfont icon-cainixihuan" style="font-size: 100px;"></span>
 		<transition>
-			<div class="target" v-show="play">
-				
-			</div>
-			
+			<div class="target" v-show="play"></div>
 		</transition>
 		<button @click="play=!play">切换</button>
+		<button @click="getusers">注册</button>
 	</div>
 </template>
 
@@ -31,31 +29,48 @@
 	} from "../data/bookdata.js"
 	export default {
 		name: 'Home',
-		
+		methods: {
+			getusers() {
+				this.$axios.post('http://127.0.0.1:8000/customusers/', {
+						username: "qweqweqweqweqwe1",
+						password: "123456",
+						password2: "123456"
+					})
+					.then(function(response) {
+						console.log(response.data);
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+			}
+
+		},
 		data() {
-			
+
 			return {
-				play:true,
+				play: true,
 				books,
 			}
 		}
 	}
 </script>
 <style lang="less">
-	@keyframes hide{
-			from{
-				width: 200px;
-				height: 200px;
-				opacity: 1;
-				left: 0;
-			}
-			to{
-				width: 0px;
-				height: 0px;
-				opacity: 0;
-				left: -200px;
-			}
+	@keyframes hide {
+		from {
+			width: 200px;
+			height: 200px;
+			opacity: 1;
+			left: 0;
 		}
+
+		to {
+			width: 0px;
+			height: 0px;
+			opacity: 0;
+			left: -200px;
+		}
+	}
+
 	.target {
 		width: 200px;
 		height: 200px;
@@ -98,26 +113,22 @@
 	// 	width: 0px;
 	// 	height: 0px;
 	// }
-	.v-enter {
-	}
-	
+	.v-enter {}
+
 	.v-enter-active {
-		animation: hide reverse 2s ;
+		animation: hide reverse 2s;
 	}
-	
-	.v-enter-to {
-	}
-	
-	.v-leave {
-	}
-	
+
+	.v-enter-to {}
+
+	.v-leave {}
+
 	.v-leave-active {
-		animation: hide 2s ;
+		animation: hide 2s;
 	}
-	
-	.v-leave-to {
-	}
-	
+
+	.v-leave-to {}
+
 
 	.books {
 		width: 80%;

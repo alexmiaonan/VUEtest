@@ -30,8 +30,8 @@ console.log(Vue.prototype)
 
 let bus = new Vue()
 Vue.prototype.$bus = bus
-
-
+import axios from "axios"
+Vue.prototype.$axios = axios
 
 new Vue({
 	router,
