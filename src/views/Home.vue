@@ -14,13 +14,16 @@
 				</el-col>
 			</el-row>
 		</div>
-		<transition>
-			<div class="target" v-show="play">
-				
-			</div>
-			
-		</transition>
-		<button @click="play=!play">切换</button>
+		<div id="test">
+			<transition>
+				<div class="target" v-show="play">
+
+				</div>
+
+			</transition>
+			<button @click="play=!play">切换</button>
+		</div>
+
 	</div>
 </template>
 
@@ -32,15 +35,29 @@
 		name: 'Home',
 		
 		data() {
-			
+
 			return {
-				play:true,
+				play: true,
 				books,
 			}
 		}
 	}
 </script>
 <style lang="less">
+	@keyframes hide{
+		from{
+			width: 200px;
+			height: 200px;
+			opacity: 1;
+			left: 0;
+		}
+		to{
+			width: 0px;
+			height: 0px;
+			opacity: 0;
+			left: -200px;
+		}
+	}
 	.target {
 		width: 200px;
 		height: 200px;
@@ -48,41 +65,21 @@
 		background-color: skyblue;
 	}
 
-	.v-enter {
-		opacity: 0;
-		left: -200px;
-		width: 0px;
-		height: 0px;
-	}
+	.v-enter {}
 
 	.v-enter-active {
-		transition: all 2s ;
+		animation: hide reverse 2s linear;
 	}
 
-	.v-enter-to {
-		opacity: 1;
-		left: 0px;
-		width: 200px;
-		height: 200px;
-	}
+	.v-enter-to {}
 
-	.v-leave {
-		opacity: 1;
-		left: 0px;
-		width: 200px;
-		height: 200px;
-	}
+	.v-leave {}
 
 	.v-leave-active {
-		transition: all 2s ;
+		animation: hide 2s linear;
 	}
 
-	.v-leave-to {
-		opacity: 0;
-		left: -200px;
-		width: 0px;
-		height: 0px;
-	}
+	.v-leave-to {}
 
 	.books {
 		width: 80%;
