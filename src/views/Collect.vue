@@ -6,7 +6,6 @@
 		<br>
 		<el-table :data="tableData" style="width:45%;margin: 0 auto;">
 			<el-table-column type="index" label="编号" width="120">
-				
 			</el-table-column>
 			<el-table-column prop="title" label="书籍名" width="240">
 			</el-table-column>

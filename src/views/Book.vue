@@ -65,7 +65,6 @@
 			add() {
 				this.$message('加入书架');
 				this.has = true
-				// this.$store.commit("addCollect", this.book.id)
 				this.$axios({
 					url: "collects",
 					method: "post",

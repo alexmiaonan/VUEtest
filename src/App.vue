@@ -84,19 +84,24 @@
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
 		color: #2c3e50;
+
 		.el-header {
 			padding: 0;
 			min-width: 300px;
 		}
-		.zhongjian{
+
+		.zhongjian {
 			height: 653px;
 		}
+
 		.rt {
 			float: right;
 		}
+
 		a {
 			text-decoration: none;
 		}
+
 		.dibu {
 			background-color: #B3C0D1;
 			color: #333;

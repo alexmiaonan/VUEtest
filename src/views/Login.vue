@@ -29,23 +29,32 @@
 					password: '',
 				},
 				input1: '',
-				input2: ''
+				input2: '',
 			};
 		},
 		methods: {
 			onSubmit() {
-				this.$jsCookie.set('user', 'gao', {
-					expires: 7
+				this.$axios({
+					url:"obtainjwt/",
+					method:"post",
+					data:{
+						username:this.formLabelAlign.username,
+						password:this.formLabelAlign.password,
+					}
+				}).then(()=>{
+					this.$message("登录成功");
+					this.$jsCookie.set("user",this.formLabelAlign.username,{expires:7})
+					this.$bus.$emit("userlogin",this.formLabelAlign.username)
+					let next = this.$route.query.next;
+					if(next){
+						this.$router.push(next)
+					}
+					else{
+						this.$router.push({name:"Home"})
+					}
+				}).catch(err=>{
+					console.log("错误原因",err)
 				})
-				this.$bus.$emit("userlogin","gao")
-				let next = this.$route.query.next;
-				if (next) {
-					this.$router.push(next)
-				} else {
-					this.$router.push({
-						name: 'Home'
-					})
-				}
 			}
 		}
 	}
