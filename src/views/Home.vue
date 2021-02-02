@@ -19,7 +19,9 @@
 			<div class="target" v-show="play"></div>
 		</transition>
 		<button @click="play=!play">切换</button>
+		<button @click="login">登录</button>
 		<button @click="getusers">注册</button>
+		<button @click="setsubjects">添加专题</button>
 	</div>
 </template>
 
@@ -30,9 +32,12 @@
 	export default {
 		name: 'Home',
 		methods: {
+			login() {
+				this.$jsCookie.set("token", "YWRtaW46MTIzNDU2")
+			},
 			getusers() {
-				this.$axios.post('http://127.0.0.1:8000/customusers/', {
-						username: "qweqweqweqweqwe1",
+				this.$axios.post('customusers/', {
+						username: "qweqweqwe1",
 						password: "123456",
 						password2: "123456"
 					})
@@ -42,7 +47,23 @@
 					.catch(function(error) {
 						console.log(error);
 					});
-			}
+			},
+			setsubjects() {
+				this.$axios({
+						method: 'post',
+						url: 'subjects/',
+						data: {
+							name: '专题2',
+						}
+					})
+					.then(function(response) {
+						console.log(response);
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},
+
 
 		},
 		data() {
