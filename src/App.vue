@@ -30,10 +30,10 @@
 					</template>
 				</el-menu>
 			</el-header>
-			<el-main>
+			<el-main class="zhongjian">
 				<router-view />
 			</el-main>
-			<el-footer>
+			<el-footer class="dibu">
 				<el-button type="primary" class="back">
 					<router-link :to='{name:"Home"}'>返回首页</router-link>
 				</el-button>
@@ -88,13 +88,16 @@
 			padding: 0;
 			min-width: 300px;
 		}
+		.zhongjian{
+			height: 653px;
+		}
 		.rt {
 			float: right;
 		}
 		a {
 			text-decoration: none;
 		}
-		.el-footer {
+		.dibu {
 			background-color: #B3C0D1;
 			color: #333;
 			text-align: center;

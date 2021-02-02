@@ -1,5 +1,5 @@
 <template>
-	<div class="book">
+	<div class="book" v-if="book">
 		<el-container>
 			<el-header>
 				<el-row>
@@ -27,7 +27,7 @@
 					</el-main>
 					<el-footer>
 						<div class="zhangjie">
-							<el-col :span="4" v-for="(a,index) in articles" :key="a.title">
+							<el-col :span="4" v-for="(a,index) in book.articles" :key="a.title">
 								<router-link :to="'/article/'+a.id">
 									<el-tag type="success"> 第{{index+1}}章-- {{a.title}} </el-tag>
 								</router-link>
@@ -41,17 +41,12 @@
 </template>
 
 <script>
-	import {
-		articles,
-		books
-	} from '../data/bookdata.js'
 	export default {
 		data() {
 			return {
 				user: null,
 				has: false,
 				book: null,
-				articles: []
 			}
 		},
 		created() {
@@ -59,19 +54,29 @@
 			if (user) {
 				this.user = user;
 			}
-			this.book = books.filter((item) => {
-				return item.id == this.$route.params.pk;
-			})[0]
-			this.articles = articles.filter((item) => {
-				return item.bookid == this.$route.params.pk;
+			this.$axios(`getbook/${this.$route.params.pk}/`).then(res => {
+				this.book = res.data;
+				this.has = this.$store.getters.getCollectBoos.indexOf(this.book.id) >= 0 ? true : false
+			}).catch(err => {
+				console.log("err", err);
 			})
-			this.has = this.$store.getters.getCollectBoos.indexOf(this.book.id) >= 0 ? true : false
 		},
 		methods: {
 			add() {
 				this.$message('加入书架');
 				this.has = true
-				this.$store.commit("addCollect", this.book.id)
+				// this.$store.commit("addCollect", this.book.id)
+				this.$axios({
+					url: "collects",
+					method: "post",
+					data: {
+						id: this.book.id
+					}
+				}).then(res=>{
+					console.log("收藏成功",res.data);
+				}).catch(err=>{
+					console.log("收藏失败",err);
+				})
 			}
 		}
 	}
@@ -84,12 +89,13 @@
 		text-align: center;
 		line-height: 60px;
 	}
-	h1{
+
+	h1 {
 		margin: 0 auto;
 	}
+
 	.zhangjie {
 		line-height: 60px;
-		background-color: #909399;
 	}
 
 	.el-main {

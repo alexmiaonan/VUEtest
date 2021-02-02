@@ -2,7 +2,7 @@
 	<div class="home">
 		<div class="books">
 			<el-row :gutter="20">
-				<el-col :span="5" v-for="b in books" :key="b.id">
+				<el-col :span="6" v-for="b in books" :key="b.id">
 					<router-link :to="'/book/'+b.id">
 						<el-card :body-style="{ padding: '0px' }" shadow="hover" class="book">
 							<img :src="b.mainimg" class="image">
@@ -14,65 +14,28 @@
 				</el-col>
 			</el-row>
 		</div>
-		<span class="iconfont icon-cainixihuan" style="font-size: 100px;"></span>
-		<transition>
-			<div class="target" v-show="play"></div>
-		</transition>
-		<button @click="play=!play">切换</button>
-		<button @click="login">登录</button>
-		<button @click="getusers">注册</button>
-		<button @click="setsubjects">添加专题</button>
 	</div>
 </template>
 
 <script>
-	import {
-		books
-	} from "../data/bookdata.js"
+	
 	export default {
 		name: 'Home',
-		methods: {
-			login() {
-				this.$jsCookie.set("token", "YWRtaW46MTIzNDU2")
-			},
-			getusers() {
-				this.$axios.post('customusers/', {
-						username: "qweqweqwe1",
-						password: "123456",
-						password2: "123456"
-					})
-					.then(function(response) {
-						console.log(response.data);
-					})
-					.catch(function(error) {
-						console.log(error);
-					});
-			},
-			setsubjects() {
-				this.$axios({
-						method: 'post',
-						url: 'subjects/',
-						data: {
-							name: '专题2',
-						}
-					})
-					.then(function(response) {
-						console.log(response);
-					})
-					.catch(function(error) {
-						console.log(error);
-					});
-			},
-
-
-		},
 		data() {
-
 			return {
 				play: true,
-				books,
+				books: [],
 			}
-		}
+		},
+		created() {
+			this.$axios({
+				method:"get",
+				url:"getbooks/"
+			}).then(res=>{
+				this.books=res.data.books;
+			}).catch(()=>{
+			})
+		},
 	}
 </script>
 <style lang="less">

@@ -1,11 +1,12 @@
 <template>
-	<div class="collect">
+	<div class="collect" v-if="tableData">
 		<h1 style="margin: 0 auto;">我的收藏</h1>
 		<br>
 		<br>
 		<br>
 		<el-table :data="tableData" style="width:50%;margin: 0 auto;">
 			<el-table-column type="index" label="编号" width="120">
+				
 			</el-table-column>
 			<el-table-column prop="title" label="书籍名" width="240">
 			</el-table-column>
@@ -20,27 +21,32 @@
 	</div>
 </template>
 <script>
-	import {
-		books
-	} from '../data/bookdata.js'
 	export default {
 		data() {
 			return {
-				tableData: [
-				]
+				tableData: []
 			}
 		},
 		created() {
-			this.$store.getters.getCollectBoos.forEach(id => {
-				let b = books.filter(b => {
-					return b.id == id
-				})[0];
-				this.tableData.push(b);
+			this.$axios({
+				url: "collects/",
+				method: "get"
+			}).then(res => {
+				this.tableData = this.tableData.concat(res.data.books)
+			}).catch(err => {
+				console.log("err", err);
 			})
 		},
 		methods: {
 			handleDelete(index, row) {
-				this.$store.dispatch("removeCollectAsync", row.id)
+				this.$axios({
+					url: `collects/${row.id}/`,
+					method: "delete"
+				}).then(res => {
+					console.log("删除收藏成功", res.data);
+				}).catch(err => {
+					console.log("删除失败", err);
+				})
 				this.tableData = this.tableData.filter(item => {
 					return item.id != row.id
 				})

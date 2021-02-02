@@ -1,5 +1,5 @@
 <template>
-	<div class="article">
+	<div class="article" v-if="article">
 		<el-container>
 			<el-header>{{article.title}}</el-header>
 			<el-main>{{article.content}}</el-main>
@@ -9,24 +9,16 @@
 </template>
 
 <script>
-	import {
-		articles
-	} from '../data/bookdata.js'
 	export default {
-		// filters:{
-		// 	info(value){
-		// 		return value+"   gcm"
-		// 	}
-		// },
 		data() {
 			return {
 				article: null
 			}
 		},
 		created() {
-			this.article = articles.filter(item => {
-				return item.id == this.$route.params.pk;
-			})[0]
+			this.$axios(`article/${this.$route.params.pk}/`).then(res => {
+				this.article = res.data;
+			})
 		}
 
 	}

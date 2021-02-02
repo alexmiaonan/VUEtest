@@ -12,7 +12,6 @@ export default new Vuex.Store({
 	state: {
 		// 相当于vue中data
 		collectBooks: [
-			101, 102
 		]
 	},
 	getters: {
