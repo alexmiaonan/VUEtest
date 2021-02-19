@@ -16,7 +16,7 @@ export default new Vuex.Store({
 	},
 	getters: {
 		// 相当于vue中的computed
-		getCollectBoos(state) {
+		getCollectBooks(state) {
 			return state.collectBooks;
 		}
 	},

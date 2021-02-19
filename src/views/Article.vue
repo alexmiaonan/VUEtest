@@ -2,7 +2,11 @@
 	<div class="article" v-if="article">
 		<el-container>
 			<el-header>{{article.title}}</el-header>
-			<el-main>{{article.content}}</el-main>
+			<el-main>
+				<div v-html="article.content">
+					
+				</div>
+			</el-main>
 		</el-container>
 
 	</div>
@@ -16,7 +20,7 @@
 			}
 		},
 		created() {
-			this.$axios(`article/${this.$route.params.pk}/`).then(res => {
+			this.$axios(`articles/${this.$route.params.pk}/`).then(res => {
 				this.article = res.data;
 			})
 		}

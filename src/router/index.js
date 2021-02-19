@@ -90,7 +90,7 @@ const router = new VueRouter({
 import Cookies from 'js-cookie'
 router.beforeEach(function(t, f, n) {
 	if (t.meta.auth) {
-		let user = Cookies.get('user')
+		let user = Cookies.get('token')
 		if (user) {
 			n()
 		} else {

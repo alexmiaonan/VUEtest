@@ -4,7 +4,7 @@ import Cookies from "js-cookie"
 axios.interceptors.request.use(function(config) {
 	let token = Cookies.get("token")
 	if (token) {
-		config["headers"]["Authorization"] = "Basic " + token
+		config["headers"]["Authorization"] = "Bearer " + token
 	}
 	// 在发送请求之前做些什么
 	return config;
@@ -21,6 +21,6 @@ axios.interceptors.response.use(function(response) {
 	// 对响应错误做点什么
 	return Promise.reject(error);
 });
-axios.defaults.baseURL = 'http://127.0.0.1:8000/';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api/';
 
 export default axios

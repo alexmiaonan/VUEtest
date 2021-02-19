@@ -16,7 +16,6 @@ Vue.use(ElementUI);
 import Cookies from "js-cookie"
 Vue.prototype.$jsCookie = Cookies
 
-import "./mock/index.js"
 import axios from "./api/index.js"
 Vue.prototype.$axios = axios
 

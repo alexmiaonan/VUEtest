@@ -1,6 +1,6 @@
 <template>
 	<div class="center">
-		{{user}}的个人主页
+		{{ userinfo }}的个人主页
 		<br>
 		<br>
 		<br>
@@ -12,9 +12,21 @@
 	export default {
 		data() {
 			return {
-				user: this.$jsCookie.get('user')
+				userinfo: null
 			}
 		},
+		created() {
+			let user = this.$jsCookie.get('token')
+			if (user) {
+				this.user = user
+				this.$axios({
+					url: "users/getuserinfo",
+					method: "get"
+				}).then(res => {
+					this.userinfo = res.data.username
+				})
+			}
+		}
 	}
 </script>
 

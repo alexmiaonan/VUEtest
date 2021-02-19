@@ -5,9 +5,9 @@
 				<el-col :span="6" v-for="b in books" :key="b.id">
 					<router-link :to="'/book/'+b.id">
 						<el-card :body-style="{ padding: '0px' }" shadow="hover" class="book">
-							<img :src="b.mainimg" class="image">
+							<img :src='"http://127.0.0.1:8000"+b.img' class="image">
 							<div style="padding: 14px;">
-								<h3>{{b.title}}</h3>
+								<h3>{{b.name}}</h3>
 							</div>
 						</el-card>
 					</router-link>
@@ -30,9 +30,9 @@
 		created() {
 			this.$axios({
 				method:"get",
-				url:"getbooks/"
+				url:"books/"
 			}).then(res=>{
-				this.books=res.data.books;
+				this.books=res.data;
 			}).catch(()=>{
 			})
 		},
@@ -54,49 +54,16 @@
 			left: -200px;
 		}
 	}
-
+	img{
+		width: 240px;
+		height: 320px;
+	}
 	.target {
 		width: 200px;
 		height: 200px;
 		position: relative;
 		background-color: skyblue;
 	}
-
-	// .v-enter {
-	// 	opacity: 0;
-	// 	left: -200px;
-	// 	width: 0px;
-	// 	height: 0px;
-	// }
-
-	// .v-enter-active {
-	// 	transition: all 2s ;
-	// }
-
-	// .v-enter-to {
-	// 	opacity: 1;
-	// 	left: 0px;
-	// 	width: 200px;
-	// 	height: 200px;
-	// }
-
-	// .v-leave {
-	// 	opacity: 1;
-	// 	left: 0px;
-	// 	width: 200px;
-	// 	height: 200px;
-	// }
-
-	// .v-leave-active {
-	// 	transition: all 2s ;
-	// }
-
-	// .v-leave-to {
-	// 	opacity: 0;
-	// 	left: -200px;
-	// 	width: 0px;
-	// 	height: 0px;
-	// }
 	.v-enter {}
 
 	.v-enter-active {

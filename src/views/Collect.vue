@@ -7,13 +7,13 @@
 		<el-table :data="tableData" style="width:45%;margin: 0 auto;">
 			<el-table-column type="index" label="编号" width="120">
 			</el-table-column>
-			<el-table-column prop="title" label="书籍名" width="240">
+			<el-table-column prop="book" label="书籍名" width="240">
 			</el-table-column>
 			<el-table-column label="操作" width="120">
 				<template slot-scope="scope">
 					<el-button size="mini" @click="handleDelete(scope.$index, scope.row)">
 						删除
-					</el-button>
+					</el-button>	
 				</template>
 			</el-table-column>
 		</el-table>
@@ -31,7 +31,7 @@
 				url: "collects/",
 				method: "get"
 			}).then(res => {
-				this.tableData = this.tableData.concat(res.data.books)
+				this.tableData = this.tableData.concat(res.data)
 			}).catch(err => {
 				console.log("err", err);
 			})
@@ -43,11 +43,11 @@
 					method: "delete"
 				}).then(res => {
 					console.log("删除收藏成功", res.data);
+					this.tableData=this.tableData.filter(item=>{
+						return item.id != row.id
+					})
 				}).catch(err => {
 					console.log("删除失败", err);
-				})
-				this.tableData = this.tableData.filter(item => {
-					return item.id != row.id
 				})
 			}
 		}

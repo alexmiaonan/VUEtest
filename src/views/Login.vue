@@ -28,12 +28,14 @@
 					username: '',
 					password: '',
 				},
-				input1: '',
-				input2: '',
 			};
 		},
 		methods: {
 			onSubmit() {
+				if(this.formLabelAlign.username.length<=0||this.formLabelAlign.password.length<=0){
+					this.$message("用户名密码军不能为空")
+					return
+				}
 				this.$axios({
 					url:"obtainjwt/",
 					method:"post",
@@ -41,9 +43,8 @@
 						username:this.formLabelAlign.username,
 						password:this.formLabelAlign.password,
 					}
-				}).then(()=>{
-					this.$message("登录成功");
-					this.$jsCookie.set("user",this.formLabelAlign.username,{expires:7})
+				}).then((res)=>{
+					this.$jsCookie.set('token',res.data.access,{expires:7})
 					this.$bus.$emit("userlogin",this.formLabelAlign.username)
 					let next = this.$route.query.next;
 					if(next){

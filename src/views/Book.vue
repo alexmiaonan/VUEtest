@@ -4,7 +4,7 @@
 			<el-header>
 				<el-row>
 					<el-col :span="20">
-						<h1 class="title">{{book.title}} </h1>
+						<h1 class="title">{{book.name}} </h1>
 					</el-col>
 					<el-col :span="4">
 						<template v-if="user">
@@ -19,15 +19,15 @@
 			</el-header>
 			<el-container>
 				<el-aside>
-					<img :src="book.mainimg" class="image">
+					<img :src='"http://127.0.0.1:8000"+book.img' class="image">
 				</el-aside>
 				<el-container>
 					<el-main>
-						{{book.outline}}
+						{{ book.info }}
 					</el-main>
 					<el-footer>
 						<div class="zhangjie">
-							<el-col :span="4" v-for="(a,index) in book.articles" :key="a.title">
+							<el-col :span="4" v-for="(a,index) in book.article" :key="a.title">
 								<router-link :to="'/article/'+a.id">
 									<el-tag type="success"> 第{{index+1}}章-- {{a.title}} </el-tag>
 								</router-link>
@@ -50,13 +50,13 @@
 			}
 		},
 		created() {
-			let user = this.$jsCookie.get("user")
+			let user = this.$jsCookie.get("token")
 			if (user) {
 				this.user = user;
 			}
-			this.$axios(`getbook/${this.$route.params.pk}/`).then(res => {
+			this.$axios(`books/${this.$route.params.pk}/`).then(res => {
 				this.book = res.data;
-				this.has = this.$store.getters.getCollectBoos.indexOf(this.book.id) >= 0 ? true : false
+				this.has = res.data.collectinfo.hascollect
 			}).catch(err => {
 				console.log("err", err);
 			})
@@ -66,15 +66,15 @@
 				this.$message('加入书架');
 				this.has = true
 				this.$axios({
-					url: "collects",
-					method: "post",
+					url: "collects/",
+					method: "POST",
 					data: {
-						id: this.book.id
+						book: this.book.name
 					}
-				}).then(res=>{
-					console.log("收藏成功",res.data);
-				}).catch(err=>{
-					console.log("收藏失败",err);
+				}).then(res => {
+					console.log("收藏成功", res.data);
+				}).catch(err => {
+					console.log("收藏失败", err);
 				})
 			}
 		}
